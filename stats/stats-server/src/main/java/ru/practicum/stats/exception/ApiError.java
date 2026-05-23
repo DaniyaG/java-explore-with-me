@@ -1,13 +1,16 @@
 package ru.practicum.stats.exception;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.experimental.FieldDefaults;
 
 @Getter
 @AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class ApiError {
-    private final String status;
-    private final String reason;
-    private final String message;
-    private final String timestamp;
+    final String status;
+    final String reason;
+    final String message;
+    final String timestamp;
 }

@@ -3,10 +3,8 @@ package ru.practicum.stats.dto;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDateTime;
 
@@ -14,18 +12,19 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class EndpointHitDto {
 
     @NotBlank(message = "Имя приложения (app) не может быть пустым")
-    private String app;
+    String app;
 
     @NotBlank(message = "URI запроса не может быть пустым")
-    private String uri;
+    String uri;
 
     @NotBlank(message = "IP-адрес пользователя не может быть пустым")
-    private String ip;
+    String ip;
 
     @NotNull(message = "Время запроса (timestamp) должно быть указано")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime timestamp;
+    LocalDateTime timestamp;
 }
