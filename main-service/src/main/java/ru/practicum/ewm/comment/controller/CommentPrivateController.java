@@ -13,6 +13,7 @@ import ru.practicum.ewm.comment.service.CommentService;
 @RequiredArgsConstructor
 public class CommentPrivateController {
     private final CommentService commentService;
+    private static final String COMMENT_ID_PATH = "/{commentId}";
 
     @PostMapping("/{eventId}")
     @ResponseStatus(HttpStatus.CREATED)
@@ -21,13 +22,13 @@ public class CommentPrivateController {
         return commentService.addComment(userId, eventId, dto);
     }
 
-    @PatchMapping("/{commentId}")
+    @PatchMapping(COMMENT_ID_PATH)
     public CommentDto updateComment(@PathVariable Long userId, @PathVariable Long commentId,
                                     @Valid @RequestBody NewCommentDto dto) {
         return commentService.updateComment(userId, commentId, dto);
     }
 
-    @DeleteMapping("/{commentId}")
+    @DeleteMapping(COMMENT_ID_PATH)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteComment(@PathVariable Long userId, @PathVariable Long commentId) {
         commentService.deleteCommentByUser(userId, commentId);
